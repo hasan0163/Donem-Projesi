@@ -1,24 +1,53 @@
-{% extends 'base.html' %}{% load static %} {% block content %}
-<p>
-    <h1 style="color:black;">
-        METİN ÖZETLEME
-    </h1>
-</p>
-<form action="{% url 'metin_summary_sonuc' %}" method="POST">
-  {% csrf_token %}
-  <textarea
-    name="metin"
-    class="form-control"
-    placeholder="Leave a comment here"
-    id="floatingTextarea2"
-    style="height: 100px"
-    cols="100"
-  ></textarea
-  ><br />
-  <button type="submit" class="btn btn-primary btn-lg">Gönder</button>
-</form>
+{% extends 'base.html' %}
+{% load static %}
 
-<div class="card">
-  <div class="card-body text-center">Özet : {{text}}</div>
+{% block content %}
+<style>
+  body {
+    background-image: url("{% static 'static/images(4).jpg' %}");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    min-height: 100vh;
+  }
+
+  .summary-container {
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 30px;
+    border-radius: 15px;
+    margin: 50px auto;
+    max-width: 800px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+  }
+
+  textarea {
+    width: 100%;
+    height: 150px;
+    padding: 10px;
+    resize: vertical;
+  }
+
+  .btn-custom {
+    background-color: #4285f4;
+    color: white;
+    font-size: 18px;
+    margin-top: 10px;
+  }
+</style>
+
+<div class="summary-container">
+  <h2 class="text-center mb-4">Metin Özetleme</h2>
+
+  <form action="{% url 'metin_summary_sonuc' %}" method="POST">
+    {% csrf_token %}
+    <textarea name="metin" placeholder="Özetlenmesini istediğiniz metni giriniz...">{{ request.POST.metin }}</textarea>
+    <button type="submit" class="btn btn-custom w-100">Gönder</button>
+  </form>
+
+  {% if text %}
+    <div class="mt-4 alert alert-info">
+      <strong>Özet:</strong> {{ text }}
+    </div>
+  {% endif %}
 </div>
 {% endblock %}

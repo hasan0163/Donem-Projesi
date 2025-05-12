@@ -1,50 +1,120 @@
-{% extends 'base.html' %}{% load static %} {% block content %}
+{% extends 'base.html' %}
+{% load static %}
 
-<link
-  href="https://fonts.googleapis.com/css2?family=Roboto&display=swap"
-  rel="stylesheet"
-/>
+{% block content %}
+  <link
+    href="https://fonts.googleapis.com/css2?family=Roboto&display=swap"
+    rel="stylesheet"
+  />
 
-<div class="anabolum center">
-  <h1>Doğal Dil İşleme Etkinlikleri</h1>
-  <div class="cards">
-    <div class="card">
-      <h2 id="scrollspyHeading1" class="card-title">Metin Özetleme</h2>
-      <a href="{% url 'metin_summary' %}">
-        <img src="{% static 'pexels-pixabay-261857.jpg' %}" alt="" />
-        <p class="card-desc" style="color: black">
-          Metin özetleme; bir belgeyi/dokümanı matematiksel yöntemler kullanarak
-          kısa paragraflar veya ifadeler halinde sıkıştırmak anlamına
-          gelmektedir.
-        </p>
-      </a>
-    </div>
+  <style>
+    /* Anasayfa için genel stil */
+    body {
+      background-image: url("{% static 'images(4).jpg' %}");
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center;
+      min-height: 100vh;
+      font-family: 'Roboto', sans-serif;
+    }
 
-    <div class="card">
-      <h2 id="scrollspyHeading2" class="card-title">Sohbet Botu</h2>
-      <a href="{% url 'chatbot' %}">
-        <img src="{% static 'pexels-alex-knight-2599244.jpg' %}" alt="" />
-        <p class="card-desc" style="color: black">
-          Sohbet botu, insanlarla doğal bir şekilde konuşarak etkileşim kuran
-          bir yazılım uygulamasıdır. Sohbet botları, farklı sektörlerde farklı
-          amaçlarla yaygın şekilde kullanılır.
-        </p>
-      </a>
-    </div>
-    <div class="card">
-      <h2 id="scrollspyHeading3" class="card-title">Duygu Durum Analizi</h2>
-      <a href="{% url 'sentiment' %}">
-        <img src="{% static 'wall-5.jpeg' %}" alt="" />
-        <p class="card-desc" style="color: black">
-          Duygu analizi temel olarak bir metin analizi (text analysis) olup
-          verilen metnin duygusal olarak ifade etmek istediği sınıfı (pozitif,
-          negatif ve nötr) belirlemeyi amaçlar. Duygu analizi, firmaların sunmuş
-          oldukları hizmet ve ürünlerin müşterilerinin gözündeki yerine anlamak
-          için kullanılır.
-        </p>
-      </a>
+    .anabolum {
+      text-align: center;
+      margin-top: 100px;
+    }
+
+    .anabolum h1 {
+      color: #fff;
+      font-size: 40px;
+      margin-bottom: 40px;
+    }
+
+    /* Kartlar bölümünün stili */
+    .cards {
+      display: flex;
+      justify-content: space-around;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+
+    .card {
+      background-color: rgba(255, 255, 255, 0.85);
+      border-radius: 15px;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+      overflow: hidden;
+      width: 300px;
+      transition: transform 0.3s ease;
+    }
+
+    .card:hover {
+      transform: scale(1.05);
+    }
+
+    .card img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+    }
+
+    .card-title {
+      text-align: center;
+      font-size: 22px;
+      color: #333;
+      padding: 20px;
+      background-color: #f4f4f4;
+    }
+
+    .card-desc {
+      padding: 15px;
+      color: #555;
+      font-size: 16px;
+    }
+
+    /* Mobil uyumlu düzen */
+    @media (max-width: 768px) {
+      .cards {
+        flex-direction: column;
+        align-items: center;
+      }
+    }
+  </style>
+
+  <div class="anabolum center">
+    <h1>Doğal Dil İşleme Etkinlikleri</h1>
+    <div class="cards">
+      <!-- Metin Özetleme Kartı -->
+      <div class="card">
+        <h2 id="scrollspyHeading1" class="card-title">Metin Özetleme</h2>
+        <a href="{% url 'metin_summary' %}">
+          <img src="{% static 'pexels-pixabay-261857.jpg' %}" alt="Metin Özetleme" />
+          <p class="card-desc">
+            Metin özetleme; bir belgeyi/dokümanı matematiksel yöntemler kullanarak kısa paragraflar veya ifadeler halinde sıkıştırmak anlamına gelmektedir.
+          </p>
+        </a>
+      </div>
+
+      <!-- Sohbet Botu Kartı -->
+      <div class="card">
+        <h2 id="scrollspyHeading2" class="card-title">Sohbet Botu</h2>
+        <a href="{% url 'chatbot' %}">
+          <img src="{% static 'pexels-alex-knight-2599244.jpg' %}" alt="Sohbet Botu" />
+          <p class="card-desc">
+            Sohbet botu, insanlarla doğal bir şekilde konuşarak etkileşim kuran bir yazılım uygulamasıdır. Sohbet botları, farklı sektörlerde farklı amaçlarla yaygın şekilde kullanılır.
+          </p>
+        </a>
+      </div>
+
+      <!-- Duygu Durum Analizi Kartı -->
+      <div class="card">
+        <h2 id="scrollspyHeading3" class="card-title">Duygu Durum Analizi</h2>
+        <a href="{% url 'sentiment' %}">
+          <img src="{% static 'wall-5.jpeg' %}" alt="Duygu Durum Analizi" />
+          <p class="card-desc">
+            Duygu analizi, verilen metnin duygusal olarak ifade etmek istediği sınıfı (pozitif, negatif ve nötr) belirlemeyi amaçlar. Firmaların hizmet ve ürünlerinin müşteri gözündeki yerini anlamak için kullanılır.
+          </p>
+        </a>
+      </div>
     </div>
   </div>
-</div>
 
 {% endblock %}
